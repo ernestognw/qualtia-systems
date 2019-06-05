@@ -1,0 +1,45 @@
+:root {
+  font-size: 16px;
+  font-family: AmericaLight, 'sans-serif';
+  letter-spacing: 0.325px;
+}
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  font-family: "Lato", sans-serif;
+  box-sizing: border-box;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #f4f6f9;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #babac0;
+  border-radius: 8px;
+}
+
+*::-webkit-scrollbar-button {
+  display: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body a {
+  display: contents;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}

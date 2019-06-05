@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Layout from "components/layout";
 import { startSerialPort, listenSerialPort } from "./renderer-events";
 
 class App extends Component {
@@ -24,11 +25,11 @@ class App extends Component {
   render() {
     const { weights } = this.state;
     return (
-      <div>
+      <Layout>
         {weights.map((weight, id) => (
           <p key={id}>{weight}</p>
         ))}
-      </div>
+      </Layout>
     );
   }
 }
