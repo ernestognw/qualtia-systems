@@ -16,6 +16,7 @@ const createWindow = () => {
     //BrowserWindow.addDevToolsExtension('<location to your react chrome extension>');
     mainWindow.webContents.openDevTools();
   }
+
   mainWindow.on("closed", () => (mainWindow = null));
 };
 
@@ -32,3 +33,5 @@ app.on("activate", () => {
     createWindow();
   }
 });
+
+export default mainWindow;

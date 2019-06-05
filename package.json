@@ -2,19 +2,20 @@
   "name": "qualtia",
   "version": "0.1.0",
   "private": true,
-  "main": "public/electron.js",
+  "main": "server/index.js",
   "dependencies": {
     "electron-is-dev": "^1.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+    "react-scripts": "3.0.1",
+    "serialport": "^7.1.5"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "rescripts start",
+    "build": "rescripts build",
+    "test": "rescripts test",
     "eject": "react-scripts eject",
-    "electron-dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && nodemon . --exec electron\""
+    "dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && nodemon . --exec electron\""
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -32,11 +33,13 @@
     ]
   },
   "nodemonConfig": {
-		"ignore": [
-			"src/*"
-		]
-	},
+    "ignore": [
+      "src/*"
+    ]
+  },
   "devDependencies": {
+    "@rescripts/cli": "^0.0.10",
+    "@rescripts/rescript-env": "^0.0.10",
     "concurrently": "^4.1.0",
     "electron": "^5.0.2",
     "electron-builder": "^20.43.0",
