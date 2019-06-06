@@ -24,7 +24,7 @@ const theme = {
     lightDark: "#6f737a",
     lightGrey: "#aaaeb3",
     veryLightGrey: "#ecedef",
-    light: "#f2f2f2"
+    light: "#f4f4f4"
   },
   fontSize: {
     heading1: "2.5rem",

@@ -9,8 +9,10 @@ const Main = styled.main`
 `;
 
 const Container = styled.div`
-  max-width: 1140px;
   padding: 20px 40px;
+  margin-top: 68px;
+  height: 100%;
+  min-height: calc(100vh - 68px);
 `;
 
 export { Main, Container };

@@ -11,3 +11,7 @@ ipcMain.on("start", event => {
     event.sender.send("data", data);
   });
 });
+
+ipcMain.on("stop", event => {
+  parser.removeAllListeners("data");
+});

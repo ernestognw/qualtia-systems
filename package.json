@@ -7,6 +7,8 @@
     "electron-is-dev": "^1.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-md-icon": "^1.13.0",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "serialport": "^7.1.5",
     "styled-components": "^4.2.1"

@@ -27,4 +27,64 @@ const Logo = styled.img`
   width: auto;
 `;
 
-export { AsideContainer, AsideBlock, LogoContainer, Logo };
+const Menu = styled.div`
+  height: calc(100vh - 140px);
+  overflow-y: auto;
+`;
+
+const TitleContainer = styled.div`
+  padding: 0.5rem 15px 0.5rem 30px;
+`;
+
+const List = styled.ul`
+  margin-bottom: 30px;
+  list-style-type: none;
+`;
+
+const ListElement = styled.li`
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  padding: 0.3125rem 10px 0.3125rem 30px;
+  border-left: 3px solid transparent;
+  font-size: 0.875rem;
+  font-weight: light;
+  cursor: pointer;
+
+  svg {
+    font-size: 18px;
+    margin-right: 10px;
+  }
+
+  ${props =>
+    props.active &&
+    `
+    &::after {
+      width: 2px;
+      content: '';
+      position: absolute;
+      background-color: ${props.theme.color.primary};
+      right: 0;
+      height: 2rem;
+    }
+
+    svg {
+      color: ${props.theme.color.primary};
+    }
+  `};
+
+  &:hover {
+    color: ${props => props.theme.color.primary};
+  }
+`;
+
+export {
+  AsideContainer,
+  AsideBlock,
+  LogoContainer,
+  Logo,
+  Menu,
+  TitleContainer,
+  List,
+  ListElement
+};

@@ -9,6 +9,7 @@ const HeaderContainer = styled.header`
   padding: 20px 40px;
   border-bottom: 1px solid ${props => props.theme.layout.border};
   background-color: #fff;
+  position: fixed;
 `;
 
 export { HeaderContainer };
