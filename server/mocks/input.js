@@ -1,12 +1,12 @@
-const SerialPort = require("@serialport/stream");
-const MockBinding = require("@serialport/binding-mock");
+import SerialPort from "@serialport/stream";
+import MockBinding from "@serialport/binding-mock";
 
 SerialPort.Binding = MockBinding;
 
 // Create a port and enable the echo and recording.
 MockBinding.createPort("/dev/input", { echo: true, record: true });
 
-const port = new SerialPort("/dev/input");
+const input = new SerialPort("/dev/input");
 
 const getPolarity = () => {
   return Math.random() > 0.5 ? " " : "-";
@@ -50,7 +50,7 @@ setInterval(() => {
   const weight = getWeight(unity);
   const stability = getStability();
   const legend = getLegend();
-  port.write(`${polarity} ${weight} ${unity}${stability}${legend}\r\n`);
+  input.write(`${polarity} ${weight} ${unity}${stability}${legend}\r\n`);
 }, 1000);
 
-export default port;
+export default input;

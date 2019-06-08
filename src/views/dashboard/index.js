@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import Input from "components/common/input";
 import { Column, Row, Button, Container } from "./elements";
-
+import { sendDataSerialPort } from "renderer-events";
 class Dashboard extends Component {
+  sendMessage = () => {
+    sendDataSerialPort("prueba");
+  };
+
   render() {
     return (
       <Container>
@@ -39,7 +43,12 @@ class Dashboard extends Component {
           </Column>
           <Column basis="70" />
         </Row>
-        <Button fullWidth marginT="auto" color="gradient">
+        <Button
+          onClick={this.sendMessage}
+          fullWidth
+          marginT="auto"
+          color="gradient"
+        >
           Enviar
         </Button>
       </Container>

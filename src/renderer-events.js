@@ -13,4 +13,13 @@ const listenSerialPort = handler => {
   ipcRenderer.on("data", handler);
 };
 
-export { startSerialPort, stopSerialPort, listenSerialPort };
+const sendDataSerialPort = message => {
+  ipcRenderer.send("send", message);
+};
+
+export {
+  startSerialPort,
+  stopSerialPort,
+  listenSerialPort,
+  sendDataSerialPort
+};
