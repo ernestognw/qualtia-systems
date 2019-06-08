@@ -1,10 +1,24 @@
 import { ipcMain } from "electron";
 import Readline from "@serialport/parser-readline";
+import SerialPort from "serialport";
 import input from "./mocks/input";
-import output from "./mocks/output";
+// import output from "./mocks/output";
 
 // App needs to be initialized by this import statement
 import "./app";
+
+const output = new SerialPort(
+  "/dev/tty.usbserial",
+  {
+    baudRate: 115200
+  },
+  function(err) {
+    if (err) {
+      return console.log("Error: ", err.message);
+    }
+  }
+);
+SerialPort.list().then(ports => console.log(ports));
 
 const parser = input.pipe(new Readline({ delimiter: "\r\n" }));
 
