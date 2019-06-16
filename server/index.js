@@ -1,43 +1,55 @@
 import { ipcMain } from "electron";
-import Readline from "@serialport/parser-readline";
 import SerialPort from "serialport";
-import input from "./mocks/input";
+import Readline from "@serialport/parser-readline";
+// import input from "./mocks/input";
 // import output from "./mocks/output";
 
 // App needs to be initialized by this import statement
 import "./app";
 
-const output = new SerialPort(
-  "/dev/tty.usbserial",
-  {
-    baudRate: 115200
-  },
-  function(err) {
-    if (err) {
-      return console.log("Error: ", err.message);
+let ports = {};
+
+ipcMain.on("get-ports", async event => {
+  const portsList = await SerialPort.list();
+  portsList.forEach(({ comName }) => {
+    ports[comName] = {};
+  });
+  event.sender.send("ports-list", portsList);
+});
+
+ipcMain.on("connect", (event, comName) => {
+  ports[comName].port = new SerialPort(
+    comName,
+    {
+      baudRate: 115200
+    },
+    err => {
+      if (err) {
+        return console.log("Error: ", err.message);
+      }
+      ports[comName].parser = ports[comName].port.pipe(
+        new Readline({ delimiter: "\r\n" })
+      );
+      event.sender.send(`connected-${comName}`);
     }
-  }
-);
-SerialPort.list().then(ports => console.log(ports));
+  );
+});
 
-const parser = input.pipe(new Readline({ delimiter: "\r\n" }));
-
-ipcMain.on("start", event => {
-  parser.on("data", data => {
-    event.sender.send("data", data);
+ipcMain.on("start", (event, comName) => {
+  ports[comName].parser.on("data", data => {
+    console.log(data);
+    event.sender.send(comName, data);
   });
 });
 
-ipcMain.on("stop", event => {
-  parser.removeAllListeners("data");
+ipcMain.on("stop", (event, comName) => {
+  ports[comName].port.close();
 });
 
-ipcMain.on("send", (event, message) => {
-  output.write(message, err => {
+ipcMain.on("send", (event, { comName, message }) => {
+  ports[comName].port.write(message, "hex", err => {
     if (err) {
       console.log(err);
-    } else {
-      console.log(`Message ${message} written`);
     }
   });
 });

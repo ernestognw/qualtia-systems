@@ -4,7 +4,7 @@ import MockBinding from "@serialport/binding-mock";
 SerialPort.Binding = MockBinding;
 
 // Create a port and enable the echo and recording.
-MockBinding.createPort("/dev/input", { echo: true, record: true });
+MockBinding.createPort("/dev/input");
 
 const input = new SerialPort("/dev/input");
 

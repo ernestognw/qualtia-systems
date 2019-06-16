@@ -183,6 +183,14 @@ const PseudoSelect = styled.select`
     padding-left: 2.5rem;
     `};
 
+  ${props =>
+    props.prefix &&
+    `
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    `};
+
   &:focus {
     outline: none;
     border: 1px solid ${props => props.theme.color.secondary};
@@ -250,7 +258,7 @@ const LeftIconContainer = styled.div`
 `;
 
 const OptionsButton = styled(RoundArrowDropDown)`
-  top: 50%;
+  top: ${props => (props.label ? "50%" : "20%")};
   right: 0;
   color: rgba(0, 0, 0, 0.54);
   position: absolute;

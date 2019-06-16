@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import {
   Container,
   PseudoInput,
@@ -52,7 +52,17 @@ class Input extends Component {
           </LeftIconContainer>
         )}
         {props.select ? (
-          <Fragment>
+          <InputGroup>
+            {props.prefix && (
+              <Prefix
+                leftIcon={props.leftIcon}
+                success={props.success}
+                warning={props.warning}
+                error={props.error}
+              >
+                {props.prefix}
+              </Prefix>
+            )}
             <PseudoSelect
               id={props.id}
               required={props.required}
@@ -62,13 +72,14 @@ class Input extends Component {
               warning={props.warning}
               error={props.error}
               name={props.name}
+              prefix={props.prefix}
               leftIcon={props.leftIcon}
               placeholderColor={props.placeholderColor}
             >
               {props.children}
             </PseudoSelect>
-            {props.selectIcon || <OptionsButton />}
-          </Fragment>
+            {props.selectIcon || <OptionsButton label={props.label} />}
+          </InputGroup>
         ) : (
           <InputGroup>
             {props.prefix && (

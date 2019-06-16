@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Main = styled.main`
   position: absolute;
   right: 0;
-  left: 250px;
+  left: ${props => (props.extend ? 0 : 250)}px;
   min-height: 100%;
   background-color: ${props => props.theme.layout.background};
 `;

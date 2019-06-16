@@ -3,10 +3,10 @@ import Aside from "./components/aside/index";
 import Header from "./components/header/index";
 import { Main, Container } from "./elements";
 
-const Layout = ({ children }) => (
+const Layout = ({ children, hideAside }) => (
   <Fragment>
-    <Aside />
-    <Main>
+    {!hideAside && <Aside />}
+    <Main extend={hideAside}>
       <Header />
       <Container>{children}</Container>
     </Main>

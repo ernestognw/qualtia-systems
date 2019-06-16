@@ -11,7 +11,7 @@ import {
 } from "./elements";
 import { Link, withRouter } from "react-router-dom";
 import RoundHome from "react-md-icon/dist/RoundHome";
-import RoundInput from "react-md-icon/dist/RoundInput";
+import RoundViewList from "react-md-icon/dist/RoundViewList";
 import Typography from "components/common/typography";
 
 const Aside = ({ location: { pathname } }) => (
@@ -33,10 +33,10 @@ const Aside = ({ location: { pathname } }) => (
               <Typography variant="heading">Home</Typography>
             </ListElement>
           </Link>
-          <Link to="/input-bascula">
-            <ListElement active={pathname.includes("input-bascula")}>
-              <RoundInput />
-              <Typography variant="heading">Input Báscula</Typography>
+          <Link to="/history">
+            <ListElement active={pathname.includes("history")}>
+              <RoundViewList />
+              <Typography variant="heading">Historial</Typography>
             </ListElement>
           </Link>
         </List>

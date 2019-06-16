@@ -18,6 +18,7 @@
     "build": "rescripts build",
     "test": "rescripts test",
     "eject": "react-scripts eject",
+    "postinstall": "electron-rebuild",
     "dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && nodemon . --exec electron\""
   },
   "eslintConfig": {
@@ -44,9 +45,10 @@
     "@rescripts/cli": "^0.0.10",
     "@rescripts/rescript-env": "^0.0.10",
     "concurrently": "^4.1.0",
-    "electron": "^5.0.2",
+    "electron": "4.0.3",
     "electron-builder": "^20.43.0",
     "electron-prebuilt-compile": "^4.0.0",
+    "electron-rebuild": "^1.8.5",
     "nodemon": "^1.19.1",
     "wait-on": "^3.2.0"
   }

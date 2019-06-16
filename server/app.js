@@ -5,7 +5,9 @@ import isDev from "electron-is-dev";
 let mainWindow;
 
 const createWindow = () => {
-  mainWindow = new BrowserWindow({ width: 900, height: 680 });
+  mainWindow = new BrowserWindow({
+    icon: __dirname + "../public/static/images/brand/isotype.icns"
+  });
   mainWindow.loadURL(
     isDev
       ? "http://localhost:3000"
@@ -17,6 +19,7 @@ const createWindow = () => {
     mainWindow.webContents.openDevTools();
   }
 
+  mainWindow.maximize();
   mainWindow.on("closed", () => (mainWindow = null));
 };
 

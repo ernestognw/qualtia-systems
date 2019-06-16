@@ -1,25 +1,65 @@
 import React, { Component } from "react";
 import Input from "components/common/input";
 import { Column, Row, Button, Container } from "./elements";
-import { sendDataSerialPort } from "renderer-events";
+import { serial } from "renderer-events";
 class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      weight: 0,
+      stability: false
+    };
+  }
+
+  removeListeners = () => {
+    const { inCOM, outCOM } = this.props;
+    serial.removeListeners(inCOM);
+    serial.removeListeners(outCOM);
+  };
+
+  componentDidMount = () => {
+    const { inCOM, outCOM } = this.props;
+
+    serial.listen(outCOM, (_, data) => {
+      console.log(data);
+    });
+
+    serial.listen(inCOM, (_, data) => {
+      this.setState({
+        weight: Number(data.slice(2, 9)),
+        stability: data[11] === " "
+      });
+    });
+  };
+
   sendMessage = () => {
-    sendDataSerialPort("prueba");
+    const { outCOM } = this.props;
+    serial.send({
+      message: Buffer.from("0,ECHO\r\n", "utf8").toString("hex"),
+      comName: outCOM
+    });
+  };
+
+  componentWillUnmount = () => {
+    this.removeListeners();
   };
 
   render() {
+    const { weight, stability } = this.state;
     return (
       <Container>
         <Row>
           <Column basis="75">
-            <Input disabled label="Peso" sufix="gr." />
+            <Input disabled value={weight} label="Peso" sufix="gr." />
           </Column>
           <Column basis="25">
             <Input
               status
               disabled
-              success
-              value="ESTABLE"
+              success={stability}
+              warning={false}
+              error={!stability}
+              value={stability ? "ESTABLE" : "NO ESTABLE"}
               label="Estabilidad"
             />
           </Column>
@@ -48,6 +88,7 @@ class Dashboard extends Component {
           fullWidth
           marginT="auto"
           color="gradient"
+          disabled={!stability}
         >
           Enviar
         </Button>

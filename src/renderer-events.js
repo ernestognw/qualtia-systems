@@ -1,25 +1,33 @@
 import { ipcRenderer } from "electron";
 
-const startSerialPort = () => {
-  ipcRenderer.send("start");
+const serial = {
+  start: comName => {
+    ipcRenderer.send("start", comName);
+  },
+  stop: comName => {
+    ipcRenderer.send("stop", comName);
+  },
+  removeListeners: comName => {
+    ipcRenderer.removeAllListeners(comName);
+  },
+  listen: (event, handler) => {
+    ipcRenderer.on(event, handler);
+  },
+  send: message => {
+    ipcRenderer.send("send", message);
+  },
+  getPorts: () =>
+    new Promise(resolve => {
+      ipcRenderer.send("get-ports");
+      ipcRenderer.once("ports-list", (_, ports) => {
+        resolve(ports);
+      });
+    }),
+  connect: comName =>
+    new Promise((resolve, reject) => {
+      ipcRenderer.send("connect", comName);
+      ipcRenderer.once(`connected-${comName}`, resolve);
+    })
 };
 
-const stopSerialPort = () => {
-  ipcRenderer.send("stop");
-  ipcRenderer.removeAllListeners("data");
-};
-
-const listenSerialPort = handler => {
-  ipcRenderer.on("data", handler);
-};
-
-const sendDataSerialPort = message => {
-  ipcRenderer.send("send", message);
-};
-
-export {
-  startSerialPort,
-  stopSerialPort,
-  listenSerialPort,
-  sendDataSerialPort
-};
+export { serial };
