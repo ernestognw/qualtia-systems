@@ -6,6 +6,7 @@
   "dependencies": {
     "axios": "^0.19.0",
     "electron-is-dev": "^1.1.0",
+    "moment": "^2.24.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-md-icon": "^1.13.0",

@@ -5,6 +5,7 @@ import History from "./views/history";
 import Dashboard from "./views/dashboard";
 import Connect from "./views/connect";
 import { serial } from "renderer-events";
+import "moment/locale/es";
 
 class App extends Component {
   constructor(props) {

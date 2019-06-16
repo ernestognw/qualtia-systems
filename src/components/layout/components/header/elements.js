@@ -10,6 +10,7 @@ const HeaderContainer = styled.header`
   border-bottom: 1px solid ${props => props.theme.layout.border};
   background-color: #fff;
   position: fixed;
+  z-index: 100;
 `;
 
 export { HeaderContainer };

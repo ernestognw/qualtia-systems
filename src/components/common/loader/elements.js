@@ -20,10 +20,10 @@ const LoaderContainer = styled.div`
     position: absolute;
     width: ${props => (props.size ? `${props.size}px` : "35px")};
     height: ${props => (props.size ? `${props.size}px` : "35px")};
-    border: 2px solid ${props => props.theme.color.info};
+    border: 2px solid ${props => props.theme.color.primary};
     border-radius: 50%;
     animation: ${ldsRing} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    border-color: ${props => props.theme.color.info} transparent transparent
+    border-color: ${props => props.theme.color.primary} transparent transparent
       transparent;
   }
   & div:nth-child(1) {

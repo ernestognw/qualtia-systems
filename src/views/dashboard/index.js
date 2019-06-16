@@ -84,6 +84,9 @@ class Dashboard extends Component {
           comName: outCOM
         });
       } catch (err) {
+        this.setState({
+          sending: false
+        });
         toast.error(
           "Ocurrió un error",
           "Verifica las conexiones seriales y de internet"
@@ -108,7 +111,7 @@ class Dashboard extends Component {
       <Container>
         <Row>
           <Column basis="75">
-            <Input disabled value={weight} label="Peso" sufix={unity} />
+            <Input disabled value={weight || 0} label="Peso" sufix={unity} />
           </Column>
           <Column basis="25">
             <Input

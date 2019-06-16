@@ -33,6 +33,7 @@ class Input extends Component {
         marginR={props.marginR}
         onFocus={this.toggleActive}
         onBlur={this.toggleActive}
+        className={props.className}
       >
         {props.label && (
           <Label font="light" htmlFor={props.id}>

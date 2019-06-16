@@ -4,7 +4,7 @@ import Typography from "components/common/typography/index";
 
 const Header = () => (
   <HeaderContainer>
-    <Typography variant="headingTitle">Qualtia Integration</Typography>
+    <Typography variant="headingTitle">Integración Qualtia</Typography>
   </HeaderContainer>
 );
 

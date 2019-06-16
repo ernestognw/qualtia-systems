@@ -66,7 +66,7 @@ const PseudoInput = styled.input`
   font-family: "Lato";
   font-size: 0.875rem;
   border-radius: 5px;
-  width: 100% !important;
+  width: 100%;
   border: 1px solid ${props => props.theme.grey.lightGrey};
   padding: 0.625rem 0.75rem;
   transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
