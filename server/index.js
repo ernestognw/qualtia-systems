@@ -37,7 +37,6 @@ ipcMain.on("connect", (event, comName) => {
 
 ipcMain.on("start", (event, comName) => {
   ports[comName].parser.on("data", data => {
-    console.log(data);
     event.sender.send(comName, data);
   });
 });

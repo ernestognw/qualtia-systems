@@ -111,6 +111,7 @@ class Input extends Component {
               sufix={props.sufix}
               align={props.align}
               status={props.status}
+              min={props.min}
             />
             {props.sufix && (
               <Sufix

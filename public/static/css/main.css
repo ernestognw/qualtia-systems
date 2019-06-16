@@ -43,3 +43,14 @@ body a {
   color: inherit;
   cursor: pointer;
 }
+
+#toast {
+  z-index: 3500;
+  position: fixed;
+  top: 65px;
+  right: 0;
+  padding: 4px;
+  width: 320px;
+  box-sizing: border-box;
+  transition: all 0.5 ease;
+}
